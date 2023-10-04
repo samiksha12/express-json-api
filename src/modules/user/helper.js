@@ -40,6 +40,7 @@ exports.updateUserData = (user_Id, newData, jsonData) => {
         const isDuplicate = existingData.some((obj) => {
           if (obj.title === newObj.title) {
             obj.active = newObj.active;
+            obj.current_weather = newObj.current_weather;
             return true;
           }
         });
@@ -82,9 +83,12 @@ exports.deleteDataById = (userId,data)=>{
       if (index !== -1) {
         const existingData = jsonData[index][userId];
         const filteredData = existingData.filter((item)=> item.title !== data.title);
-        return filteredData;
+        if (filteredData.length < existingData.length) {
+          jsonData[index][userId] = filteredData;
+          return jsonData;
+        }
       }
-      return [];
+      return jsonData;
     }
   }
 };

@@ -6,7 +6,7 @@ const userRoutes = require("./src/modules/user/userRoutes");
 const dataRoutes = require("./src/modules/data/dataRoutes");
 
 const corsOptions = {
-  origin: "http://localhost:3000", // Replace with the actual URL of your React app
+  origin: "*", // Replace with the actual URL of your React app
   optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 app.use(cors(corsOptions));
